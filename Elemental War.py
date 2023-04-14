@@ -10,7 +10,7 @@ options = ["earth", "fire", "metal", "water", "wood"]
 while True: 
 
     
-    user_input = input("Type Earth/Fire/Metal/Water/Wood or Q to quit: ").lower()
+    user_input = input("Attack with Earth/Fire/Metal/Water/Wood or Q to quit: ").lower()
     if user_input == "q":
         break
 
@@ -20,46 +20,46 @@ while True:
     random_number = random.randint(0, 4)
     # earth: 0, fire: 1, metal: 2, water: 3, wood:4
     computer_pick = options[random_number]
-    print("Computer Picked", computer_pick + ".")
+    print("Computer attacked with:", computer_pick + ".")
 
     if user_input == "water" and computer_pick == "metal":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "metal" and computer_pick == "earth":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "earth" and computer_pick == "fire":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "fire" and computer_pick == "wood":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "wood" and computer_pick == "water":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "water" and computer_pick == "fire":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "fire" and computer_pick == "metal":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "metal" and computer_pick == "wood":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "wood" and computer_pick == "earth":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "earth" and computer_pick == "water":
-        print("You won!")
+        print("Victory!")
         user_wins += 1
 
     elif user_input == "water" and computer_pick == "water":
@@ -83,7 +83,7 @@ while True:
         draws += 1
 
     else: 
-        print("You lost!")
+        print("Defeated!")
         computer_wins += 1
 
 print("You won", user_wins, "times.")
