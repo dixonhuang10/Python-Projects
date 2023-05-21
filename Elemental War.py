@@ -6,90 +6,42 @@ computer_wins = 0
 
 options = ["earth", "fire", "metal", "water", "wood"]
 
-
-while True: 
-
-    
-    user_input = input("Attack with Earth/Fire/Metal/Water/Wood or Q to quit: ").lower()
-    if user_input == "q":
+while True:
+    player = input("Attack with Earth/Fire/Metal/Water/Wood or Q to quit: ").lower()
+    if player == "q":
         break
 
-    if user_input not in options: 
-        continue 
+    if player not in options:
+        print("That's not a valid play. Check your spelling!")
+        continue
 
     random_number = random.randint(0, 4)
-    # earth: 0, fire: 1, metal: 2, water: 3, wood:4
-    computer_pick = options[random_number]
-    print("Computer attacked with:", computer_pick + ".")
+    computer = options[random_number]
+    print("Computer attacked with:", computer + ".")
 
-    if user_input == "water" and computer_pick == "metal":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "metal" and computer_pick == "earth":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "earth" and computer_pick == "fire":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "fire" and computer_pick == "wood":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "wood" and computer_pick == "water":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "water" and computer_pick == "fire":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "fire" and computer_pick == "metal":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "metal" and computer_pick == "wood":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "wood" and computer_pick == "earth":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "earth" and computer_pick == "water":
-        print("Victory!")
-        user_wins += 1
-
-    elif user_input == "water" and computer_pick == "water":
-        print("Draw!")
+    if player == computer:
+        print("Tie!")
         draws += 1
 
-    elif user_input == "fire" and computer_pick == "fire":
-        print("Draw!")
-        draws += 1
+    elif (
+        (player == "water" and computer == "fire")
+        or (player == "fire" and computer == "wood")
+        or (player == "wood" and computer == "earth")
+        or (player == "earth" and computer == "water")
+        or (player == "metal" and computer == "earth")
+        or (player == "earth" and computer == "fire")
+        or (player == "fire" and computer == "metal")
+        or (player == "metal" and computer == "wood")
+        or (player == "wood" and computer == "water")
+    ):
+        print("Victory!", player.capitalize(), "beats", computer)
+        user_wins += 1
 
-    elif user_input == "metal" and computer_pick == "metal":
-        print("Draw!")
-        draws += 1
-
-    elif user_input == "wood" and computer_pick == "wood":
-        print("Draw!")
-        draws += 1
-
-    elif user_input == "earth" and computer_pick == "earth":
-        print("Draw!")
-        draws += 1
-
-    else: 
-        print("Defeated!")
+    else:
+        print("Defeat!", computer.capitalize(), "beats", player)
         computer_wins += 1
 
 print("You won", user_wins, "times.")
-print("Draws", draws)
+print("Draws:", draws)
 print("The computer won", computer_wins, "times.")
 print("Goodbye!")
-
-
-
