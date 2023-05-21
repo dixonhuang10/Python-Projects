@@ -1,0 +1,35 @@
+import requests
+from twilio.rest import Client
+
+# Coinbase API endpoint for getting the current Bitcoin price
+COINBASE_API_URL = 'https://api.coinbase.com/v2/prices/spot?currency=USD'
+
+# Twilio API credentials
+TWILIO_ACCOUNT_SID = 'your_account_sid'
+TWILIO_AUTH_TOKEN = 'your_auth_token'
+TWILIO_PHONE_NUMBER = 'your_twilio_phone_number'
+RECIPIENT_PHONE_NUMBER = 'recipient_phone_number'
+
+# Threshold price for notification (example: $40,000)
+NOTIFICATION_THRESHOLD = 40000
+
+# Fetch the current Bitcoin price from Coinbase API
+response = requests.get(COINBASE_API_URL)
+data = response.json()
+bitcoin_price = float(data['data']['amount'])
+
+# Check if the Bitcoin price crosses the threshold
+if bitcoin_price > NOTIFICATION_THRESHOLD:
+    # Compose the notification message
+    message = f"The Bitcoin price has crossed ${NOTIFICATION_THRESHOLD}! Current price: ${bitcoin_price}"
+
+    # Send the notification using Twilio
+    client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    client.messages.create(
+        body=message,
+        from_=TWILIO_PHONE_NUMBER,
+        to=RECIPIENT_PHONE_NUMBER
+    )
+    print("Notification sent!")
+else:
+    print("Bitcoin price is below the threshold.")
